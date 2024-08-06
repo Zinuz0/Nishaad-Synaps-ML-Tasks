@@ -45,7 +45,25 @@ def total_spending(request_spending, account_id, category):
     else:
         return "Account not found" 
 
-print(total_spending(request_spending, "Mahek", "Creatives"))
+def account_balance(request_spending, account_id):
+    if account_id in request_spending:
+        name = request_spending[account_id]
+
+        Balance = name["balance"]
+
+        return Balance
     
-     
+def money_owed(request_spending, account_id):
+    if account_id in request_spending:
+        name = request_spending[account_id]
+        owe = 0
+
+        for transaction in name["transactions"]:
+            owe += transaction["amount"]
+            if owe > 0 :
+                return 0
+            else: return owe 
+        
+
+
 
